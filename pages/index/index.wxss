@@ -30,6 +30,130 @@
   height: 104rpx;
   z-index: 2;
   position: absolute;
-  top: 75%;
+  bottom: 10%;
   left: 255rpx;
 }
+
+.dialog {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+.yili{
+  width: 568rpx;
+  height: 780rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-284rpx,-390rpx);
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/hd_bg.png");
+  background-size: 100% 100%;
+}
+
+.yili_img{
+   width: 568rpx;
+   height: 568rpx;
+   float: left;
+   margin-top: 15rpx;
+}
+
+.yili_btn{
+  width: 100%;
+  height: 100rpx;
+  float: left;
+  margin-top: 50rpx;
+}
+
+.btn1{
+  width: 179rpx;
+  height: 77rpx;
+  float: left;
+  margin-left: 85rpx
+}
+
+.btn2{
+  width: 179rpx;
+  height: 77rpx;
+  float: left;
+  margin-left: 30rpx
+}
+
+.sbtn1{
+  width: 179rpx;
+  height: 77rpx;
+  float: left;
+  margin-left: 45rpx
+}
+
+
+
+.StartDialog {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+.start{
+  width: 592rpx;
+  height: 785rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-296rpx,-392rpx);
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/sbg1.png");
+  background-size: 100% 100%;
+}
+
+.loading{
+  width: 440rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 65rpx;
+  bottom: 155rpx;
+ 
+}
+
+.start_img{
+   width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.mprogress{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 8rpx;
+  z-index: 1;
+  left: 12rpx;
+}
+
+.start_num{
+  width: auto;
+  height: auto;
+  color: #f3cd70;
+  position: absolute;
+  right:11rpx;
+  top: 7rpx;
+  font-size: 29rpx;
+}
+
+.start_btns {
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 30rpx;
+}
+

@@ -1,0 +1,15 @@
+<view class="bg">
+  <view>
+    <image class="t1" src="../../images/t1.png"></image>
+    <image class="b1" src="../../images/b9.png"></image>
+    <image class="x1" src="../../images/start2.png"></image>
+      <image class="x2" src="../../images/start2.png"></image>
+      <image class="x3" src="../../images/start2.png"></image>
+      <image class="x4" src="../../images/start3.png"></image>
+        <image class="x5" src="../../images/start2.png"></image>
+
+          <image class="x6" src="../../images/start1.png"></image>
+
+            <image class="x7" src="../../images/start1.png"></image>
+  </view>
+</view>

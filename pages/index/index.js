@@ -1,15 +1,38 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
+const app = getApp();
 Page({
   data: {
-  
+    ColorList: app.globalData.ColorList,
+    color: 'red',
+    showYiLiDiaLog: false,
+    showStartDiaLog: true
   },
-  //事件处理函数
-  
-  onLoad: function () {
-   
+  onLoad() {
+    let that = this;
+    setTimeout(function () {
+      that.setData({
+        loading: true
+      })
+    }, 500)
   },
-  
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  SetColor(e) {
+    this.setData({
+      color: e.currentTarget.dataset.color,
+      modalName: null
+    })
+  },
+  SetActive(e) {
+    this.setData({
+      active: e.detail.value
+    })
+  }
 })

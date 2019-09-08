@@ -5,7 +5,34 @@
     <image class="t2" src="../../images/t2.png"></image>
     <image class="b1" src="../../images/b1.png"></image>
   </view>
-  <view class="">
-
+  <view wx:if="{{showYiLiDiaLog}}" class="dialog">
+    <view class="yili">
+      <image class="yili_img" src="../../images/yili.png"></image>
+      <view class="yili_btn">
+        <image class="btn1" src="../../images/b3.png"></image>
+        <image class="btn2" src="../../images/b2.png"></image>
+      </view>
+    </view>
   </view>
+
+  <view wx:if="{{showStartDiaLog}}" class="StartDialog">
+    <view class="start">
+      <view class="loading">
+        <view class="start_img">
+          <image class="img100" src="../../images/xx.png"></image>
+        </view>
+        <view style="width: 85%;" class="mprogress">
+          <view style="background-color: #dcd4c0;" class="cu-progress round sm striped {{active?'active':''}}">
+            <view style="width:{{loading?'60%':''}}; background-color: #f3bc6a;"></view>
+          </view>
+        </view>
+        <view class="start_num">x3</view>
+      </view>
+      <view class="start_btns">
+          <image style="margin-left:90rpx;" class="sbtn1" src="../../images/b9.png"></image>
+          <image class="sbtn1" src="../../images/b13.png"></image>
+      </view>
+    </view>
+  </view>
+
 </view>

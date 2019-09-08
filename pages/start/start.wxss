@@ -1,0 +1,93 @@
+.bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/bg4.jpg");
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
+
+.t1 {
+  width: 100%;
+  height: 300rpx;
+  position: absolute;
+  z-index: 2;
+  top: 5%;
+  left: 0;
+}
+
+.t2 {
+  width: 95%;
+  height: 20rpx;
+  position: absolute;
+  z-index: 2;
+  left: 3%;
+  bottom: 5%;
+}
+
+.b1 {
+  width: 240rpx;
+  height: 94rpx;
+  z-index: 2;
+  position: absolute;
+  bottom: 10%;
+  left: 255rpx;
+}
+
+.x1{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 330rpx;
+  left: 205rpx;
+}
+
+.x2{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 330rpx;
+  left: 425rpx;
+}
+
+.x3{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 520rpx;
+  left:105rpx;
+}
+
+
+.x4{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 520rpx;
+  left:310rpx;
+}
+
+.x5{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 520rpx;
+  left:520rpx;
+}
+
+.x6{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 710rpx;
+  left: 205rpx;
+}
+
+.x7{
+  width: 140rpx;
+  height: 242rpx;
+  position: absolute;
+  top: 710rpx;
+  left: 425rpx;
+}

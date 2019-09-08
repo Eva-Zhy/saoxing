@@ -1,0 +1,23 @@
+<scroll-view class="gift-scroll">
+  <view class="gift-v">
+    <view class="gift-img">
+      <image class="img100" src="../../images/card1.png"></image>
+    </view>
+    <view class="gift-text">
+      <view class="text1">
+        永辉超市500元购物卡
+      </view>
+      <view class="text2">
+        点击进入生活查看
+      </view>
+    </view>
+    <view class="gift-num">
+      <text style="font-size:40rpx; color:#df8a2f;">￥</text>
+      <text style="font-size:70rpx; color:#df8a2f;">5</text>
+    </view>
+  </view>
+</scroll-view>
+<view class="gift-btn">
+  <image class="gift-btn1" src="../../images/b14.png"></image>
+  <image class="gift-btn2" src="../../images/b15.png"></image>
+</view>
