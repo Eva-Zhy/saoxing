@@ -6,8 +6,13 @@
     <image class="b1" src="../../images/b1.png"></image>
   </view>
   <view wx:if="{{showYiLiDiaLog}}" class="dialog">
-    <view class="yili">
-      <image class="yili_img" src="../../images/yili.png"></image>
+    <view class="yili youhuijuan">
+      <view class="yhjt1">您已获得</view>
+      <view class="yhjt2">伊利产品-永辉购物优惠券</view>
+      <view class="yhjt3">已领取到微信-卡包-我的卡劵</view>
+      <view class="yhjt4">进店集星，瓜分百万红包</view>
+      <view class="yhjt5">更有全场大奖等你拿！</view> -->
+      <image class="yili_img" src="../../images/liwu1.png"></image>
       <view class="yili_btn">
         <image class="btn1" src="../../images/b3.png"></image>
         <image class="btn2" src="../../images/b2.png"></image>
@@ -17,6 +22,14 @@
 
   <view wx:if="{{showStartDiaLog}}" class="StartDialog">
     <view class="start">
+      <image src="../../images/xxbg1.png" class="sbg"></image>
+      <image class="xxxx" src="../../images/xx1.png"></image>
+      <view class="xxt1 xxcolor">您已获得</view>
+      <view class="xxt2 xxcolor">科 技 星</view>
+      <view class="xxt3">舒华 邀请您共筑祖国骄傲</view>
+      <view class="xxt4">进店寻找更多星星</view>
+      <view class="xxt5">到伊利堆头</view>
+      <view class="xxt6">赢取现金豪礼</view>
       <view class="loading">
         <view class="start_img">
           <image class="img100" src="../../images/xx.png"></image>
@@ -29,8 +42,8 @@
         <view class="start_num">x3</view>
       </view>
       <view class="start_btns">
-          <image style="margin-left:90rpx;" class="sbtn1" src="../../images/b9.png"></image>
-          <image class="sbtn1" src="../../images/b13.png"></image>
+        <image style="margin-left:90rpx;" class="sbtn1" src="../../images/b9.png"></image>
+        <image class="sbtn1" src="../../images/b13.png"></image>
       </view>
     </view>
   </view>

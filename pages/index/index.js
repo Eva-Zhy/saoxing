@@ -3,8 +3,8 @@ Page({
   data: {
     ColorList: app.globalData.ColorList,
     color: 'red',
-    showYiLiDiaLog: false,
-    showStartDiaLog: true
+    showYiLiDiaLog: true,
+    showStartDiaLog: false
   },
   onLoad() {
     let that = this;

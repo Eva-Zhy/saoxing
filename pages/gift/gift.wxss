@@ -71,7 +71,6 @@ page {
 .gift-btn1{
   width: 240rpx;
   height: 104rpx;
-  left: 255rpx;
   float: left;
   margin-top: 50rpx;
   margin-left: 95rpx;
@@ -80,7 +79,6 @@ page {
 .gift-btn2{
   width: 240rpx;
   height: 104rpx;
-  left: 255rpx;
   float: left;
   margin-top: 50rpx;
   margin-left: 80rpx;

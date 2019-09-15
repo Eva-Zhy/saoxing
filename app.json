@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/start/start",
-    "pages/gift/gift"
+    "pages/gift/gift",
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
