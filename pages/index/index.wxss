@@ -24,6 +24,15 @@
   left: 0;
 }
 
+.xxtitle {
+  width: 100%;
+  height: 300rpx;
+  position: absolute;
+  z-index: 3;
+  top: 8%;
+  left: 0;
+}
+
 .t2 {
   width: 95%;
   height: 20rpx;
@@ -34,12 +43,21 @@
 }
 
 .b1 {
-  width: 240rpx;
-  height: 104rpx;
+   width: 200rpx;
+  height: 86rpx;
   z-index: 2;
   position: absolute;
-  bottom: 10%;
-  left: 255rpx;
+  bottom: 11%;
+  left: 155rpx;
+}
+
+.hdgz {
+  width: 200rpx;
+  height: 86rpx;
+  z-index: 2;
+  position: absolute;
+  bottom: 11%;
+  left: 405rpx;
 }
 
 .dialog {
@@ -64,11 +82,29 @@
 }
 
 .yili_img {
-  width: 568rpx;
-  height: 178rpx;
+  width: 341rpx;
+  height: 166rpx;
   position: absolute;
-  top: 220rpx;
-  left: 0;
+  top: 230rpx;
+  left: 120rpx;
+}
+
+.hongbao_img {
+  width: 350rpx;
+  height: 330rpx;
+  position: absolute;
+  top: 235rpx;
+  z-index: 1;
+  left: 140rpx;
+}
+
+.hongbao_img1 {
+  width: 350rpx;
+  height: 330rpx;
+  position: absolute;
+  z-index: 2;
+  top: 235rpx;
+  left: 140rpx;
 }
 
 .yhjt1 {
@@ -135,6 +171,23 @@
   height: 77rpx;
   float: left;
   margin-left: 85rpx;
+}
+
+.btn1_img {
+  width: 179rpx;
+  height: 77rpx;
+  float: left;
+  margin-left: 200rpx;
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/b4.png");
+  background-size: 100% 100%;
+  background-color: transparent;
+}
+
+.btn1_img2 {
+  width: 179rpx;
+  height: 77rpx;
+  float: left;
+  margin-left: 200rpx;
 }
 
 .btn2 {

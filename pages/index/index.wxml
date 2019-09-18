@@ -2,28 +2,64 @@
 <view class="bg">
   <view>
     <image class="t1" src="../../images/t1.png"></image>
+    <image wx:for="{{12}}" wx:for-index="idx" wx:key="idx" style="{{xxtitle_i===idx?'display:block':'display:none'}}" class="xxtitle" src='{{imageUrl+"xxtitle/"+idx+".png"}}'></image>
     <image class="t2" src="../../images/t2.png"></image>
-    <image class="b1" src="../../images/b1.png"></image>
+    <!-- <image bindtap="isGetCoupon" class="b1" style="bottom:280rpx;" src=""></image> -->
+    <image class="b1" bindtap="checkSession" src="../../images/b1.png"></image>
+    <image class="hdgz" bindtap="isDraw" src="../../images/hdgz.png"></image>
   </view>
-  <view wx:if="{{showYiLiDiaLog}}" class="dialog">
+ 
+  <!-- 领取优惠卷成功 -->
+  <view wx:if="{{lingQuChengong}}" class="dialog">
     <view class="yili youhuijuan">
       <view class="yhjt1">您已获得</view>
       <view class="yhjt2">伊利产品-永辉购物优惠券</view>
       <view class="yhjt3">已领取到微信-卡包-我的卡劵</view>
       <view class="yhjt4">进店集星，瓜分百万红包</view>
-      <view class="yhjt5">更有全场大奖等你拿！</view> -->
-      <image class="yili_img" src="../../images/liwu1.png"></image>
+      <view class="yhjt5">更有全场大奖等你拿！</view>
+      <image wx:for="{{17}}" wx:for-index="idx" wx:key="idx" style="{{yhj_i===idx+1?'display:block':'display:none'}}" class="yili_img" src='{{imageUrl+"yhj/"+idx+".png"}}'></image>
+      
       <view class="yili_btn">
-        <image class="btn1" src="../../images/b3.png"></image>
-        <image class="btn2" src="../../images/b2.png"></image>
+        <image wx:if="{{inShop == false}}" bindtap="openShop" class="btn1" src="../../images/b3.png"></image>
+         <image wx:if="{{inShop == true}}" bindtap="openScan" class="btn1" src="../../images/b14.png"></image>
+        <image bindtap="goGift" class="btn2" src="../../images/b2.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 领取优惠卷 -->
+  <view wx:if="{{showLingQu}}" class="dialog">
+    <view class="yili youhuijuan">
+      <view class="yhjt1">恭喜您获得</view>
+      <view class="yhjt2">伊利产品-永辉购物优惠券</view>
+      <view class="yhjt3">注册伊利会员即可领取</view>
+      <image wx:for="{{17}}" wx:for-index="idx" wx:key="idx" style="{{yhj_i===idx+1?'display:block':'display:none'}}" class="yili_img" src='{{imageUrl+"yhj/"+idx+".png"}}'></image>
+      <view class="yili_btn">
+        <!-- <image class="btn1" src="../../images/b4.png"></image> -->
+        <button class="btn1_img" bindtap="getPhoneNumber"></button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 领取红包 -->
+  <view wx:if="{{showHongBao}}" class="dialog">
+    <view class="yili youhuijuan">
+      <view class="yhjt1">恭喜您获得</view>
+      <view class="yhjt2">首颗星及现金红包</view>
+      
+      <image class="hongbao_img" src="../../images/yili7.png"></image>
+      <image wx:for="{{27}}" wx:for-index="idx" wx:key="idx" style="{{hongbao_i===idx+1?'display:block':'display:none'}}" class="hongbao_img1" src='{{imageUrl+"hongbao/"+idx+".png"}}'></image>
+      <view class="yili_btn">
+        <image class="btn1_img2 " src="../../images/b8.png"></image>
+        <!-- <button class="btn1_img" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
       </view>
     </view>
   </view>
 
   <view wx:if="{{showStartDiaLog}}" class="StartDialog">
     <view class="start">
-      <image src="../../images/xxbg1.png" class="sbg"></image>
-      <image class="xxxx" src="../../images/xx1.png"></image>
+      <image src="https://www.jwnice.com/h5/saoxing/img/xxbg1.png" class="sbg"></image>
+      <image class="xxxx" src="https://www.jwnice.com/h5/saoxing/img/xx1.png"></image>
       <view class="xxt1 xxcolor">您已获得</view>
       <view class="xxt2 xxcolor">科 技 星</view>
       <view class="xxt3">舒华 邀请您共筑祖国骄傲</view>
@@ -36,7 +72,7 @@
         </view>
         <view style="width: 85%;" class="mprogress">
           <view style="background-color: #dcd4c0;" class="cu-progress round sm striped {{active?'active':''}}">
-            <view style="width:{{loading?'60%':''}}; background-color: #f3bc6a;"></view>
+            <view style="width:60%; background-color: #f3bc6a;"></view>
           </view>
         </view>
         <view class="start_num">x3</view>
