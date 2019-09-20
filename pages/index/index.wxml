@@ -1,87 +1,161 @@
 <!--index.wxml-->
-<view class="bg">
+<view wx:if="{{loading==true}}" class="bg">
   <view>
+    <image class="logo" src="../../images/logo.png"></image>
     <image class="t1" src="../../images/t1.png"></image>
-    <image wx:for="{{12}}" wx:for-index="idx" wx:key="idx" style="{{xxtitle_i===idx?'display:block':'display:none'}}" class="xxtitle" src='{{imageUrl+"xxtitle/"+idx+".png"}}'></image>
+    <image wx:for="{{12}}" wx:for-index="idx" wx:key="idx" style="{{xxtitle_i===idx+1?'display:block':'display:none'}}" class="xxtitle" src='{{imageUrl+"xxtitle/"+idx+".png"}}'></image>
     <image class="t2" src="../../images/t2.png"></image>
+    <image class="wenben" src="../../images/wenben.png"></image>
+    <!-- <view class="index_t1">进永辉·参加伊利集星活动</view>
+    <view class="index_t2">赢取多重惊喜好礼</view> -->
     <!-- <image bindtap="isGetCoupon" class="b1" style="bottom:280rpx;" src=""></image> -->
     <image class="b1" bindtap="checkSession" src="../../images/b1.png"></image>
-    <image class="hdgz" bindtap="isDraw" src="../../images/hdgz.png"></image>
+    <image class="hdgz" bindtap="gorules" data-id="0" src="../../images/hdgz.png"></image>
+    <!-- <image class="hdgz" bindtap="test" src="../../images/hdgz.png"></image> -->
+    <image wx:for="{{32}}" wx:for-index="idx" wx:key="idx" style="{{hezi1===idx+1?'display:block':'display:none'}}" class="hezi1" src='{{imageUrl+"hezi1/"+idx+".png"}}'></image>
   </view>
- 
+
+  <!-- info  showinfo-->
+  <view wx:if="{{showinfo}}" class="dialog">
+    <view class="yili youhuijuan">
+      <image bindtap="colseshowinfo" class="cha" src="../../images/cha.png"></image>
+      <view class="yhjt1xxx1">您可到永辉门户</view>
+      <view class="yhjt1xxx2">参与集星活动</view>
+      <view class="yhjt1xxx3">就有机会</view>
+      <view class="yhjt1xxx4">获得永辉购物卡大利</view>
+
+      <view class="yili_btn">
+        <image bindtap="back" class="btn1" src="../../images/b18.png"></image>
+        <image bindtap="openShop" class="btn2" src="../../images/b19.png"></image>
+      </view>
+      <view class="guanyu">关于伊利Y-Plus活力俱乐部</view>
+    </view>
+  </view>
+
   <!-- 领取优惠卷成功 -->
   <view wx:if="{{lingQuChengong}}" class="dialog">
     <view class="yili youhuijuan">
+      <image bindtap="colselingQuChengong" class="cha" src="../../images/cha.png"></image>
       <view class="yhjt1">您已获得</view>
       <view class="yhjt2">伊利产品-永辉购物优惠券</view>
       <view class="yhjt3">已领取到微信-卡包-我的卡劵</view>
       <view class="yhjt4">进店集星，瓜分百万红包</view>
       <view class="yhjt5">更有全场大奖等你拿！</view>
       <image wx:for="{{17}}" wx:for-index="idx" wx:key="idx" style="{{yhj_i===idx+1?'display:block':'display:none'}}" class="yili_img" src='{{imageUrl+"yhj/"+idx+".png"}}'></image>
-      
-      <view class="yili_btn">
+
+      <view wx:if="{{openGift==false}}" class="yili_btn">
         <image wx:if="{{inShop == false}}" bindtap="openShop" class="btn1" src="../../images/b3.png"></image>
-         <image wx:if="{{inShop == true}}" bindtap="openScan" class="btn1" src="../../images/b14.png"></image>
-        <image bindtap="goGift" class="btn2" src="../../images/b2.png"></image>
+        <image wx:if="{{inShop == true}}" bindtap="openScan" data-type="0" class="btn1" src="../../images/b14.png"></image>
+        <image bindtap="goGift" class="{{inShop == true?'btn2':'btn2'}}" src="../../images/b2.png"></image>
       </view>
+
+      <view wx:if="{{openGift==true}}" class="yili_btn">
+        <image bindtap="goGift" class="btn2_1" src="../../images/b2.png"></image>
+      </view>
+      <view class="guanyu">关于伊利Y-Plus活力俱乐部</view>
     </view>
   </view>
 
   <!-- 领取优惠卷 -->
   <view wx:if="{{showLingQu}}" class="dialog">
     <view class="yili youhuijuan">
+      <image bindtap="colseshowLingQu" class="cha" src="../../images/cha.png"></image>
       <view class="yhjt1">恭喜您获得</view>
       <view class="yhjt2">伊利产品-永辉购物优惠券</view>
       <view class="yhjt3">注册伊利会员即可领取</view>
       <image wx:for="{{17}}" wx:for-index="idx" wx:key="idx" style="{{yhj_i===idx+1?'display:block':'display:none'}}" class="yili_img" src='{{imageUrl+"yhj/"+idx+".png"}}'></image>
       <view class="yili_btn">
         <!-- <image class="btn1" src="../../images/b4.png"></image> -->
-        <button class="btn1_img" bindtap="getPhoneNumber"></button>
+        <button class="btn1_img ani" bindtap="getPhoneNumber"></button>
       </view>
+      <view class="guanyu">关于伊利Y-Plus活力俱乐部</view>
     </view>
   </view>
 
   <!-- 领取红包 -->
   <view wx:if="{{showHongBao}}" class="dialog">
     <view class="yili youhuijuan">
+      <image bindtap="colseshowHongBao" class="cha" src="../../images/cha.png"></image>
       <view class="yhjt1">恭喜您获得</view>
       <view class="yhjt2">首颗星及现金红包</view>
-      
       <image class="hongbao_img" src="../../images/yili7.png"></image>
       <image wx:for="{{27}}" wx:for-index="idx" wx:key="idx" style="{{hongbao_i===idx+1?'display:block':'display:none'}}" class="hongbao_img1" src='{{imageUrl+"hongbao/"+idx+".png"}}'></image>
       <view class="yili_btn">
-        <image class="btn1_img2 " src="../../images/b8.png"></image>
+        <image class="btn1_img2 ani" bindtap="getHongBaoUrl" src="../../images/b8.png"></image>
         <!-- <button class="btn1_img" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
       </view>
     </view>
   </view>
 
+  <!-- 领取购物卡 -->
+  <view wx:if="{{showGwk}}" class="dialog">
+    <view class="yili youhuijuan">
+      <image bindtap="colseshowGwk" class="cha" src="../../images/cha.png"></image>
+      <view class="yhjt1">恭喜您获得</view>
+      <view class="yhjt2">伊利产品-永辉购物卡</view>
+      <image wx:if="{{gwktype==1}}" class="gwk" src="../../images/gwk500.png"></image>
+      <image wx:if="{{gwktype==2}}" class="gwk" src="../../images/gwk100.png"></image>
+      <image wx:if="{{gwktype==3}}" class="gwk" src="../../images/gwk50.png"></image>
+
+      <view wx:if="{{gwktype==1}}" class="yhjt2_1">验证码:</view>
+      <view wx:if="{{gwktype==1}}" bindtap="copycode" class="yhjt2_2">{{gwkCode}}</view>
+      <view wx:if="{{gwktype==1}}" class="yhjt2_3">(点击验证码复制)</view>
+      <view class="yili_btn">
+        <image bindtap="opengwk" class="btn1_img2 ani" src="../../images/b17.png"></image>
+        <!-- <button class="btn1_img" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
+      </view>
+      <view class="guanyu">关于伊利Y-Plus活力俱乐部</view>
+    </view>
+  </view>
+
+  <!-- 查看门店 showMD -->
+  <view wx:if="{{showMD}}" class="dialog">
+    <view class="yili youhuijuan">
+      <image bindtap="colseshowMD" class="cha" src="../../images/cha.png"></image>
+      <view class="yhjt1">门店信息</view>
+      <image class="dibiao " src="../../images/dibiao.png"></image>
+      <view class="yhjtxxx_2">{{address}}
+      </view>
+      <view class="yili_btn">
+        <image bindtap="back" class="btn1" src="../../images/b18.png"></image>
+        <image bindtap="lookshop" class="btn2" src="../../images/b19.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- showStartDiaLog -->
   <view wx:if="{{showStartDiaLog}}" class="StartDialog">
     <view class="start">
-      <image src="https://www.jwnice.com/h5/saoxing/img/xxbg1.png" class="sbg"></image>
-      <image class="xxxx" src="https://www.jwnice.com/h5/saoxing/img/xx1.png"></image>
-      <view class="xxt1 xxcolor">您已获得</view>
-      <view class="xxt2 xxcolor">科 技 星</view>
-      <view class="xxt3">舒华 邀请您共筑祖国骄傲</view>
-      <view class="xxt4">进店寻找更多星星</view>
-      <view class="xxt5">到伊利堆头</view>
-      <view class="xxt6">赢取现金豪礼</view>
+      <image bindtap="colseshowStartDiaLog" class="cha" src="../../images/cha.png"></image>
+
+      <image src="{{'https://www.jwnice.com/h5/saoxing/img/xxbg'+xxs[myXNum-1].img+'.png'}}" class="sbg"></image>
+      <!-- <image class="xxxx" src="{{'https://www.jwnice.com/h5/saoxing/img/xx'+myXNum+'.png'}}"></image> -->
+      <image wx:for="{{37}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xxxx" src='{{imageUrl+"xx"+xxs[myXNum-1].img+"/"+idx+".png"}}'></image>
+      <view class="xxt1 {{myXNum==6?'xxcolor':'xxcolor2'}}">您已获得</view>
+      <view class="xxt2 {{myXNum==6?'xxcolor':'xxcolor2'}}">{{xxs[myXNum-1].name}}</view>
+      <view class="xxt3 {{myXNum==6?'xxcolor':'xxcolor2'}}">{{xxs[myXNum-1].des}}</view>
+      <view wx:if="{{myXNum!=7}}" class="xxt4 {{myXNum==6?'xxcolor':'xxcolor2'}}">进店寻找更多星星</view>
+      <view wx:if="{{myXNum!=7}}" class="xxt5 {{myXNum==6?'xxcolor':'xxcolor2'}}">到伊利堆头</view>
+      <view wx:if="{{myXNum!=7}}" class="xxt6 {{myXNum==6?'xxcolor':'xxcolor2'}}">赢取现金豪礼</view>
+      <view wx:if="{{myXNum==7}}" class="xxt4 {{myXNum==6?'xxcolor':'xxcolor2'}}">恭喜您已集齐7颗星</view>
+      <view wx:if="{{myXNum==7}}" class="xxt5 {{myXNum==6?'xxcolor':'xxcolor2'}}">立即抽取大奖</view>
+      <view wx:if="{{myXNum==7}}" class="xxt6 {{myXNum==6?'xxcolor':'xxcolor2'}}">试试手气吧</view>
       <view class="loading">
         <view class="start_img">
           <image class="img100" src="../../images/xx.png"></image>
         </view>
         <view style="width: 85%;" class="mprogress">
           <view style="background-color: #dcd4c0;" class="cu-progress round sm striped {{active?'active':''}}">
-            <view style="width:60%; background-color: #f3bc6a;"></view>
+            <view style="width:{{toPercent}}; background-color: #f3bc6a;"></view>
           </view>
         </view>
-        <view class="start_num">x3</view>
+        <view class="start_num {{myXNum==6?'xxcolor':'xxcolor2'}}">x{{myXNum}}</view>
       </view>
       <view class="start_btns">
-        <image style="margin-left:90rpx;" class="sbtn1" src="../../images/b9.png"></image>
-        <image class="sbtn1" src="../../images/b13.png"></image>
+        <image wx:if="{{myXNum!=7}}" style="margin-left:90rpx;" bindtap="openScan" class="sbtn1" src="../../images/b9.png"></image>
+        <image wx:if="{{myXNum!=7}}" bindtap="goStart" class="sbtn1" src="../../images/b13.png"></image>
+        <image wx:if="{{myXNum==7}}" bindtap="isDraw" style="margin-left:210rpx;" class="sbtn1 ani" src="../../images/b16.png"></image>
       </view>
     </view>
   </view>
-
 </view>

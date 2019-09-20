@@ -18,44 +18,64 @@
       </view>
     </view>
     <view class="gift-v" wx:if="{{item.kind == 2}}">
-    <view class=" gift-img ">
-      <image class="img100 " src="../../images/card2.png "></image>
-    </view>
-    <view class="gift-text ">
-      <view class="text1 ">
-        现金红包
+      <view class=" gift-img ">
+        <image class="img100 " src="../../images/card2.png "></image>
       </view>
-      <view class="text2 ">
-        已放入微信钱包
-      </view>
-    </view>
-    <view class="gift-num ">
-      <text style="font-size:40rpx; color:#df8a2f; ">￥</text>
-      <text style="font-size:70rpx; color:#df8a2f; ">{{item.price}}</text>
-    </view>
-  </view>
-  <view class="gift-v" wx:if="{{item.kind == 3}}">
-      <view class="gift-img">
-        <image class="img100" src="../../images/card3.png"></image>
-      </view>
-      <view class="gift-text">
-        <view class="text1">
-          永辉购物卡
+      <view class="gift-text ">
+        <view class="text1 ">
+          现金红包
         </view>
-        <view class="text2">
-          <view style="float:left;">验证码</view>
-          <view style="float: left;width: auto;height: 38rpx;background-color: #d2d2d2;padding:0 5rpx;color:#fff;line-height: 38rpx;margin-left:10rpx;border-radius: 7rpx;">0135690156</view>
+        <view class="text2 ">
+          已放入微信钱包
         </view>
       </view>
-      <view class="gift-num">
-        <text style="font-size:40rpx; color:#df8a2f;">￥</text>
-        <text style="font-size:70rpx; color:#df8a2f;">{{item.price}}</text>
+      <view class="gift-num ">
+        <text style="font-size:40rpx; color:#df8a2f; ">￥</text>
+        <text style="font-size:70rpx; color:#df8a2f; ">{{item.price}}</text>
+      </view>
+    </view>
+    <view class="gift-v" wx:if="{{item.kind == 3}}">
+      <view bindtap="openLink" data-url="{{item.gwkUrl}}" wx:if="{{item.itemId != 4}}">
+        <view class="gift-img">
+          <image class="img100" src="../../images/card3.png"></image>
+        </view>
+        <view class="gift-text">
+          <view class="text1">
+            永辉购物卡
+          </view>
+          <view wx:if="{{item.price == 500}}" class="text2">
+            <view style="float:left;">验证码</view>
+            <view style="float: left;width: auto;height: 38rpx;background-color: #d2d2d2;padding:0 5rpx;color:#fff;line-height: 38rpx;margin-left:10rpx;border-radius: 7rpx;">{{item.gwkCode}}</view>
+          </view>
+        </view>
+        <view class="gift-num">
+          <text style="font-size:40rpx; color:#df8a2f;">￥</text>
+          <text style="font-size:70rpx; color:#df8a2f;">{{item.price}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{item.itemId == 4}}">
+        <view class="gift-img">
+          <image class="img100" src="../../images/card1.png"></image>
+        </view>
+        <view class="gift-text">
+          <view class="text1">
+            永辉购物优惠卷
+          </view>
+          <view class="text2">
+            限伊利常温液态奶产品使用
+          </view>
+        </view>
+        <view class="gift-num">
+          <text style="font-size:40rpx; color:#df8a2f;">￥</text>
+          <text style="font-size:70rpx; color:#df8a2f;">{{item.price}}</text>
+        </view>
       </view>
     </view>
   </view>
 
 </scroll-view>
 <view class="gift-btn">
-  <image class="gift-btn1" src="../../images/b14.png"></image>
-  <image class="gift-btn2" src="../../images/b15.png"></image>
+  <image wx:if="{{getGift == true}}" bindtap="indexscan" class="gift-btn1" src="../../images/b14.png"></image>
+  <image class="{{getGift == false?'gift-btn3':'gift-btn2'}}" bindtap="indexinfo" src="../../images/b15.png"></image>
 </view>

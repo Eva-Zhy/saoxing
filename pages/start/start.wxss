@@ -35,6 +35,18 @@
   left: 255rpx;
 }
 
+.xx_img{
+   width: 140rpx;
+   height: 130rpx;
+   float: left;
+}
+.xx_img2{
+   width: 140rpx;
+   height: 130rpx;
+   position: absolute;
+   z-index: -1;
+}
+
 .x1{
   width: 140rpx;
   height: 242rpx;
@@ -43,12 +55,24 @@
   left: 205rpx;
 }
 
+.xx_title{
+   width: 140rpx;
+   text-align: center;
+   font-size: 25rpx;
+   color: #fbf0c6;
+}
+
 .x2{
   width: 140rpx;
   height: 242rpx;
   position: absolute;
   top: 330rpx;
   left: 425rpx;
+
+}
+.xxxxxbg{
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/xxxxbg.png?v=1");
+  background-size: 100% 100%;
 }
 
 .x3{
@@ -90,4 +114,51 @@
   position: absolute;
   top: 710rpx;
   left: 425rpx;
+}
+
+
+.ani {
+  animation: mymove 3s infinite;
+  -webkit-animation: mymove 3s infinite; /*Safari and Chrome*/
+  animation-direction: alternate; /*轮流反向播放动画。*/
+  animation-timing-function: ease-in-out; /*动画的速度曲线*//* Safari 和 Chrome */
+  -webkit-animation: mymove 3s infinite;
+  -webkit-animation-direction: alternate; /*轮流反向播放动画。*/
+  -webkit-animation-timing-function: ease-in-out; /*动画的速度曲线*/
+}
+
+@keyframes mymove {
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
+
+  25% {
+    transform: scale(1.05); /*放大1.1倍*/
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.05);
+  }
+}
+
+@-webkit-keyframes mymove {
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
+
+  25% {
+    transform: scale(1.05); /*放大1.1倍*/
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.05);
+  }
 }

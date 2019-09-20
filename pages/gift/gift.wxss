@@ -83,3 +83,11 @@ page {
   margin-top: 50rpx;
   margin-left: 80rpx;
 }
+
+.gift-btn3{
+  width: 240rpx;
+  height: 104rpx;
+  float: left;
+  margin-top: 50rpx;
+  margin-left:260rpx;
+}

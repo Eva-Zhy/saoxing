@@ -1,11 +1,15 @@
-// pages/gift/gift.js
+import {
+  Config
+} from '../../utils/config.js';
+const app = getApp();
 Page({
-
+  smwtTitle: '我的好礼',
   /**
    * 页面的初始数据
    */
   data: {
-    gifts: []
+    gifts: [],
+    getGift: false
   },
 
   /**
@@ -14,6 +18,99 @@ Page({
   onLoad: function(options) {
     let that = this;
     that.getGifts()
+    that.checkisDraw()
+  },
+  indexinfo(){
+    app.smwt.track('event', 'button', '进入永辉生活', '我的好礼页面', '')
+    wx.navigateToMiniProgram({
+      appId: 'wxc9cf7c95499ee604',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+  // 获取三公里门店
+  getHongBao() {
+    let that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log("getLocation", res);
+        that.data.lat = res.latitude;
+        that.data.lng = res.longitude
+      
+        wx.request({
+          method: "get",
+          dataType: "json",
+          url: Config.restUrl + 'isMenDianBy3.json',
+          data: {
+            token: wx.getStorageSync('token'),
+            lat: that.data.lat,
+            lng: that.data.lng
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success(res) {
+            console.log(res.data);
+            if (res.data.data != 0) {
+          
+            } else {
+              that.setData({
+                getGift: false
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+  // 判断是否已经抽奖
+  checkisDraw() {
+    let that = this;
+    wx.request({
+      method: "POST",
+      dataType: "json",
+      url: Config.restUrl + 'isDraw.json',
+      data: {
+        token: wx.getStorageSync("token")
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        console.log(res);
+        if (res.data.metaInfo.code == 0) {
+          if (res.data.data == 0) {
+            // 未抽奖
+            that.setData({
+              getGift:true
+            })
+          } else if (res.data.data == 1) {
+            // 已抽奖
+            that.setData({
+              getGift: false
+            })
+          }
+
+          // that.getHongBao()
+        }
+
+      }
+    })
+  },
+  indexscan(){
+    app.smwt.track('event', 'button', '开始集星', '我的好礼页面', '')
+    if (app.globalData.inShop == true) {
+      wx.redirectTo({
+        url: '../index/index?from=3',
+      })
+    }else {
+      wx.redirectTo({
+        url: '../index/index?from=4',
+      })
+    }
+   
   },
   getGifts() {
     let that = this;
@@ -50,7 +147,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    //动态设定⼩程序⻚⾯标题
+    wx.setNavigationBarTitle({
+      title: '我的好礼'
+    })
+    //设定后设置this.smwtTitle进⾏⻚⾯标题的监测配置
+    this.smwtTitle = '我的好礼'
   },
 
   /**

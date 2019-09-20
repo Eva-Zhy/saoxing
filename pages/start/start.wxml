@@ -1,15 +1,45 @@
 <view class="bg">
   <view>
     <image class="t1" src="../../images/t1.png"></image>
-    <image class="b1" src="../../images/b9.png"></image>
-    <image class="x1" src="../../images/start2.png"></image>
-      <image class="x2" src="../../images/start2.png"></image>
-      <image class="x3" src="../../images/start2.png"></image>
-      <image class="x4" src="../../images/start3.png"></image>
-        <image class="x5" src="../../images/start2.png"></image>
+    <image bindtap="goindexScan" class="b1 ani" src="../../images/b9.png"></image>
 
-          <image class="x6" src="../../images/start1.png"></image>
+    <view class="x1 xxxxxbg">
+      <image wx:if="{{xxNum>=1}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=1}}" class="xx_img" src="../../images/x7.png"></image>
+      <view wx:if="{{xxNum>=1}}" class="xx_title">有机星</view>
+    </view>
 
-            <image class="x7" src="../../images/start1.png"></image>
+    <view class="x2 xxxxxbg">
+     <image wx:if="{{xxNum>=2}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=2}}" class="xx_img" src="../../images/x6.png"></image>
+      <view wx:if="{{xxNum>=2}}" class="xx_title">成长星</view>
+    </view>
+
+    <view class="x3 xxxxxbg">
+     <image wx:if="{{xxNum>=3}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=3}}" class="xx_img" src="../../images/x2.png"></image>
+      <view wx:if="{{xxNum>=3}}" class="xx_title">科技星</view>
+    </view>
+    <view class="x5 xxxxxbg">
+     <image wx:if="{{xxNum>=4}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=4}}" class="xx_img" src="../../images/x3.png"></image>
+      <view wx:if="{{xxNum>=4}}" class="xx_title">植选星</view>
+    </view>
+    <view class="x4 xxxxxbg">
+     <image wx:if="{{xxNum>=7}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=7}}" class="xx_img" src="../../images/x5.png"></image>
+      <view wx:if="{{xxNum>=7}}" class="xx_title">伊利星</view>
+    </view>
+    <view class="x6 xxxxxbg">
+     <image wx:if="{{xxNum>=6}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=6}}" class="xx_img" src="../../images/x1.png"></image>
+      <view  wx:if="{{xxNum>=6}}" class="xx_title">能量星</view>
+    </view>
+    <view class="x7 xxxxxbg">
+     <image wx:if="{{xxNum>=5}}" wx:for="{{13}}" wx:for-index="idx" wx:key="idx" style="{{xx_i===idx+1?'display:block':'display:none'}}" class="xx_img2" src='{{imageUrl+"xxbg/"+idx+".png"}}'></image>
+      <image wx:if="{{xxNum>=5}}" class="xx_img" src="../../images/x4.png"></image>
+      <view  wx:if="{{xxNum>=5}}" class="xx_title">活力星</view>
+    </view>
+
   </view>
 </view>

@@ -5,16 +5,51 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    xxNum:0,
+    xx_i:1,
+    imageUrl: "https://www.jwnice.com/h5/saoxing/",
+    xx_time:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    console.log(options)
+    that.data.xxNum = options.xxNum
+    that.setData({
+      xxNum: that.data.xxNum
+    })
+    that.playxx()
   },
-
+  goindexScan(){
+    this.stopxx();
+    wx.redirectTo({
+      url: '../index/index?from=3',
+    })
+    // wx.navigateBack({})
+  },
+  playxx() {
+    let that = this;
+    // 首页标题
+    if (that.data.xx_time == null) {
+      that.data.xx_time = setInterval(function () {
+        that.data.xx_i = that.data.xx_i % 16
+        that.data.xx_i++
+        that.setData({
+          xx_i: that.data.xx_i
+        })
+      }, 100)
+    }
+  },
+  stopxx(){
+    let that = this;
+    if (that.data.xx_time!=null) {
+      clearInterval(that.data.xx_time);
+      that.data.xx_i = 1
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,23 +1,18 @@
-const app = getApp();
+// pages/rules/rules.js
 Page({
 
   /**
    * 页面的初始数据
    */
-  
   data: {
-    h5url:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.h5url = app.globalData.h5url;
-    console.log(this.data.h5url);
-    this.setData({
-      h5url: this.data.h5url
-    })
+
   },
 
   /**

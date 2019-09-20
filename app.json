@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/start/start",
     "pages/gift/gift",
+    "pages/opengift/opengift",
+    "pages/start/start",
+    "pages/rules/rules",
     "pages/h5/h5"
   ],
   "permission": {
@@ -10,10 +12,13 @@
       "desc": "请点击确认"
     }
   },
+  "navigateToMiniProgramAppIdList": [
+    "wxc9cf7c95499ee604"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "来自星星的“礼”",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

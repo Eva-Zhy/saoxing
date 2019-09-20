@@ -1,0 +1,57 @@
+.bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("https://www.jwnice.com/h5/saoxing/img/index_bg.jpg");
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
+.yhjt1 {
+  width: 100%;
+  text-align: center;
+  color: #f3cd70;
+  position: absolute;
+  top: 190rpx;
+  font-size: 35rpx;
+  font-weight: 600;
+  left: 0;
+}
+
+.yhjt2 {
+  width: 100%;
+  text-align: center;
+  color: #f3cd70;
+  position: absolute;
+  top: 240rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  left: 0;
+}
+
+.gift_t3{
+  width: 750rpx;
+  height: 261rpx;
+  position: absolute;
+  z-index: 20;
+  top: 15rpx;
+}
+
+.hezi2 {
+  width: 750rpx;
+  height: 1000rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-375rpx, -500rpx);
+  z-index: 1;
+}
+
+.btn1{
+  width: 179rpx;
+  height: 77rpx;
+  position: absolute;
+  bottom: 100rpx;
+  left: 280rpx;
+  z-index: 99;
+}
