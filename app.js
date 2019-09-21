@@ -4,12 +4,16 @@
 var smwt = require('./utils/smwt.js')
 App({
   onLaunch: function () {
-    
+   
+   
+   
   },
   globalData: {
     userInfo: null,
     openGift: false,
+    back:null,
     inShop:false,
+    inApp:true,
     h5url:""
   }
 })

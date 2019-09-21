@@ -1,3 +1,5 @@
+<view class="bg">
+<view class="title">我的好礼</view>
 <scroll-view class="gift-scroll">
   <view wx:for="{{gifts}}" wx:for-index="idx" wx:for-item="item">
     <view class="gift-v" wx:if="{{item.kind == 1}}">
@@ -9,7 +11,7 @@
           永辉购物优惠卷
         </view>
         <view class="text2">
-          限伊利常温液态奶产品使用
+         优惠券已通过【微信支付】推送，请注意查收。
         </view>
       </view>
       <view class="gift-num">
@@ -26,12 +28,12 @@
           现金红包
         </view>
         <view class="text2 ">
-          已放入微信钱包
+          红包已通过【活力伊利】推送，请注意查收。
         </view>
       </view>
       <view class="gift-num ">
         <text style="font-size:40rpx; color:#df8a2f; ">￥</text>
-        <text style="font-size:70rpx; color:#df8a2f; ">{{item.price}}</text>
+        <text style="font-size:60rpx; color:#df8a2f; ">{{item.price}}</text>
       </view>
     </view>
     <view class="gift-v" wx:if="{{item.kind == 3}}">
@@ -46,6 +48,9 @@
           <view wx:if="{{item.price == 500}}" class="text2">
             <view style="float:left;">验证码</view>
             <view style="float: left;width: auto;height: 38rpx;background-color: #d2d2d2;padding:0 5rpx;color:#fff;line-height: 38rpx;margin-left:10rpx;border-radius: 7rpx;">{{item.gwkCode}}</view>
+          </view>
+          <view wx:if="{{item.price != 500}}" class="text2">
+            <view style="float:left;">点击即可在任意永辉门店使用</view>
           </view>
         </view>
         <view class="gift-num">
@@ -76,6 +81,10 @@
 
 </scroll-view>
 <view class="gift-btn">
-  <image wx:if="{{getGift == true}}" bindtap="indexscan" class="gift-btn1" src="../../images/b14.png"></image>
-  <image class="{{getGift == false?'gift-btn3':'gift-btn2'}}" bindtap="indexinfo" src="../../images/b15.png"></image>
+  <!-- <image wx:if="{{getGift == true}}" bindtap="indexscan" class="gift-btn1" src="../../images/b14.png"></image>
+  <image class="{{getGift == false?'gift-btn3':'gift-btn2'}}" bindtap="indexinfo" src="../../images/b15.png"></image> -->
+
+  <image  bindtap="indexscan" class="gift-btn1" src="../../images/b19.png"></image>
+  <image class="gift-btn2" bindtap="indexinfo" src="../../images/b15.png"></image>
+</view>
 </view>

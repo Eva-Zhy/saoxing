@@ -4,7 +4,7 @@ import {
 const app = getApp();
 const ImageSource = require('../../utils/ImageSource.js');
 const ImageLoader = require('../../utils/ImgageLoader.js');
-
+// import memberService from '../../../../pages/memberModule/services/member.service';
 Page({
   smwtTitle: '⾸⻚',
   data: {
@@ -18,7 +18,7 @@ Page({
     showMD: false,
     showinfo: false,
     inShop: true,
-    address: "消费者点击查看门店会获得最近门店",
+    address: "点击下方按钮，查看附近门店",
     yhj_i: 1,
     yhj_time: null,
     xxtitle_i: 1,
@@ -33,78 +33,87 @@ Page({
     lng: 0,
     hongbao_i: 1,
     lingQuChengong: false,
+    loadingNow: false,
     gwkCode: "",
     gwkPwd: "",
     gwkUrl: "",
-    imageUrl: "https://www.jwnice.com/h5/saoxing/",
+    hideHeizhi: false,
+    userRes: null,
+    heziload: 0,
+    usermobile: 0,
+    myoptions: {},
+    imageUrl: "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/",
     showStartDiaLog: false
   },
   onLoad(options) {
     let that = this;
+    // memberService.initMiniProgram(() => {
+    //   // 这里写你的页面逻辑
+    //   console.log('hello world');
+    // });
+
     wx.showLoading({
       title: '加载中',
     })
-    var loader = new ImageLoader({
-      base: ImageSource.BASE,
-      source: [ImageSource.hezi1, ImageSource.imageList, ImageSource.index],
-      loading: res => {
-        // 可以做进度条动画
-        console.log("loading", res);
-      },
-      loaded: res => {
+    that.playTestHezi1()
+    that.data.myoptions = options
 
-        
+    that.setData({
+      imageUrl: Config.imageUrl,
+      openGift: app.globalData.openGift,
+      xxs: Config.xxs
+    });
 
+  },
+
+  // 最新代码
+  imageLoad() {
+    let that = this;
+    that.data.heziload++;
+    console.log(that.data.heziload);
+    if (that.data.heziload == 32) {
+      console.log("加载完成");
+      setTimeout(function() {
         // 可以加载完毕动画
         wx.hideLoading()
-        console.log("loading222", res);
         that.data.loading = true
-        
+
         that.setData({
           loading: that.data.loading
         })
-        setTimeout(function(){
+
+        setTimeout(function() {
           that.playHezi1();
           that.playXXTitle();
-        },800)
-        setTimeout(function () {
-          var loader2 = new ImageLoader({
-            base: ImageSource.BASE,
-            source: [ImageSource.xxbg, ImageSource.xx],
-            loading: res => {
-              // 可以做进度条动画
-              console.log("loading", res);
-            },
-            loaded: res => {
+        }, 3000)
+        setTimeout(function() {
+          that.setData({
+            loadingNow: true
+          })
+        }, 12000)
 
-            }
-          }
-          )
-        }, 5000)
 
-       
-
-        console.log("options", options);
-        if (options.from != undefined) {
-          if (options.from == 0) {
-            if (options.res == 0) {
+        console.log("options", that.data.myoptions);
+        if (that.data.myoptions.from != undefined) {
+          if (that.data.myoptions.from == 0) {
+            if (that.data.myoptions.res == 0) {
               that.lingQuChengong = true
               that.setData({
                 lingQuChengong: that.lingQuChengong,
                 openGift: app.globalData.openGift
               })
-            } else if (options.res == 1) {
+            } else if (that.data.myoptions.res == 1) {
               wx.showModal({
                 title: '提示',
                 content: '领取失败,请稍后重试',
                 success(res) {
-                  if (res.confirm) { } else if (res.cancel) { }
+                  if (res.confirm) {} else if (res.cancel) {}
                 }
               })
             }
-          } else if (options.from == 1) {
+          } else if (that.data.myoptions.from == 1) {
             // 红包
-            if (options.res == 0) {
+            if (that.data.myoptions.res == 0) {
               wx.showModal({
                 title: '提示',
                 content: '红包领取成功，请在服务通知内查收',
@@ -115,31 +124,36 @@ Page({
                   that.playXX()
                   that.setData({
                     myXNum: that.data.myXNum,
-                    toPercent: toPercent,
                     showStartDiaLog: that.data.showStartDiaLog,
                     lingQuChengong: false,
                     showHongBao: false
                   });
+                  setTimeout(function() {
+                    that.setData({
+                      toPercent: toPercent
+                    });
+                  }, 1500);
                 }
               })
-            } else if (options.res == 1) {
+              app.smwt.track('event', 'button', '红包记录', '红包页面', '')
+            } else if (that.data.myoptions.res == 1) {
               wx.showModal({
                 title: '提示',
                 content: '领取失败,请稍后重试',
                 success(res) {
-                  if (res.confirm) { } else if (res.cancel) { }
+                  if (res.confirm) {} else if (res.cancel) {}
                 }
               })
             }
-          } else if (options.from == 3) {
+          } else if (that.data.myoptions.from == 3) {
             // 扫描
             that.openScan();
-          } else if (options.from == 2) {
+          } else if (that.data.myoptions.from == 2) {
             // 购物卡
-            that.data.gwktype = options.gwktype;
-            that.data.gwkCode = options.gwkCode;
-            that.data.gwkPwd = options.gwkPwd;
-            that.data.gwkUrl = options.gwkUrl;
+            that.data.gwktype = that.data.myoptions.gwktype;
+            that.data.gwkCode = that.data.myoptions.gwkCode;
+            that.data.gwkPwd = that.data.myoptions.gwkPwd;
+            that.data.gwkUrl = that.data.myoptions.gwkUrl;
 
             that.setData({
               showGwk: true,
@@ -148,52 +162,24 @@ Page({
               gwkPwd: that.data.gwkPwd,
               gwkUrl: that.data.gwkUrl
             })
-          } else if (options.from == 4) {
+          } else if (that.data.myoptions.from == 4) {
             that.setData({
-              showinfo: true
+              showMD: true
             })
           }
         }
-      }
-    });
-    
-  
-    // that.playXX();
-
-    // var loader = new ImageLoader({
-    //   base: ImageSource.BASE,
-    //   source: [ImageSource.imageList, ImageSource.index],
-    //   loading: res => {
-    //     // 可以做进度条动画
-    //     console.log("loading", res);
-    //   },
-    //   loaded: res => {
-    //     // 可以加载完毕动画
-    //     console.log("loading222", res);
-    //   }
-    // });
-
-    // 红包
-    // that.data.timer = setInterval(function () {
-    //   that.data.hongbao_i = that.data.hongbao_i % 27
-    //   that.data.hongbao_i++
-    //   that.setData({
-    //     hongbao_i: that.data.hongbao_i
-    //   })
-    // }, 200)
-    that.setData({
-      imageUrl: Config.imageUrl,
-      openGift: app.globalData.openGift,
-      xxs: Config.xxs
-    });
-
+      }, 3000)
+    }
   },
+
   opengwk() {
-    app.smwt.track('event', 'button', '立即使用购物卡', '', '')
+    app.smwt.track('event', 'button', '点击绑卡', '随机中购物卡页面', '')
     app.globalData.h5url = this.data.gwkUrl
     wx.navigateTo({
       url: '../h5/h5',
     })
+    app.globalData.inApp = false
+
   },
   copycode() {
 
@@ -212,11 +198,16 @@ Page({
     wx.navigateTo({
       url: '../start/start?mytype=4'
     })
+    app.globalData.inApp = false
   },
   goStart() {
+
+    app.smwt.track('event', 'button', '查看我的星星', '星星展示页面', '')
+    this.stopXX()
     wx.navigateTo({
       url: '../start/start?xxNum=' + this.data.myXNum,
     })
+    app.globalData.inApp = false
   },
   lookshop() {
     app.smwt.track('event', 'button', '查看附近门店', '查看适用门店页面（背景抢先领券）', '')
@@ -253,23 +244,33 @@ Page({
       }
     })
   },
-  back() {
-    app.smwt.track('event', 'button', '返回小程序', '', '')
+  back(e) {
+    let type = e.currentTarget.dataset.type
+    if (type == 1) {
+      app.smwt.track('event', 'button', '返回小程序', '您可到永辉生活参与集星页面（背景抢先领券）', '')
+    } else if (type == 0) {
+      app.smwt.track('event', 'button', '返回小程序', '查看适用门店页面（背景抢先领券）', '')
+    } else {
+      app.smwt.track('event', 'button', '返回小程序', '您可到永辉生活参与集星页面（背景抢先领券）', '')
+    }
+
     this.setData({
       showMD: false,
       showinfo: false
     })
   },
   gorules(e) {
- 
-    app.smwt.track('event', 'button', '查看活动规则', '', '')
+
+    app.smwt.track('event', 'button', '查看活动规则', '抢先领券页面', '')
     wx.navigateTo({
       url: '../rules/rules',
     })
+    app.globalData.inApp = false
   },
   isDraw() {
     let that = this;
-    app.smwt.track('event', 'button', '抽取大礼', '', '')
+    this.stopXX()
+    app.smwt.track('event', 'button', '点击开奖', '集到第七颗星弹窗页面', '')
     wx.request({
       method: "post",
       dataType: "json",
@@ -290,7 +291,7 @@ Page({
             // 已抽奖
             wx.showModal({
               title: '提示',
-              content: '已抽奖过',
+              content: '您已集齐七星并开奖，快前往我的礼品，查看所有奖励吧！',
               success(res) {
                 if (res.confirm) {} else if (res.cancel) {}
               }
@@ -319,10 +320,12 @@ Page({
             wx.navigateTo({
               url: '../opengift/opengift?mytype=' + res.data.data.id
             })
+            app.globalData.inApp = false
           } else if (res.data.data.id == 1 || res.data.data.id == 2 || res.data.data.id == 3) {
             wx.navigateTo({
               url: '../opengift/opengift?mytype=' + res.data.data.id + '&gwkCode=' + res.data.data.gwkCode + '&gwkPwd=' + res.data.data.gwkPwd + '&gwkUrl=' + res.data.data.gwkUrl
             })
+            app.globalData.inApp = false
           }
 
         } else {
@@ -338,15 +341,20 @@ Page({
     })
   },
   openScan(e) {
-    console.log()
+    console.log(e)
     let that = this;
-    let type = e.currentTarget.dataset.type
+    let type = 0
+    if (e != undefined) {
+      type = e.currentTarget.dataset.type
+    } else {
+      type = -1
+    }
     if (type == 0) {
-      app.smwt.track('event', 'button', '开始扫星', '', '')
-    } else if (type == 1){
-      app.smwt.track('event', 'button', '星星展示页面继续集星', '', '')
-    } else  {
-      app.smwt.track('event', 'button', '集星的页面继续集星', '', '')
+      app.smwt.track('event', 'button', '开始扫星', '领取成功页面（背景立即参与）', '')
+    } else if (type == 2) {
+      app.smwt.track('event', 'button', '继续集星', '星星展示页面', '')
+    } else {
+      app.smwt.track('event', 'button', '继续集星', '集星的页面', '')
     }
     that.stopXX();
     that.setData({
@@ -483,7 +491,7 @@ Page({
           that.data.resData.local = "fj"
         }
 
-        let clientSystem = 3;
+        let clientSystem = 1;
         if (that.data.resData.type !== -1) {
           wx.getSystemInfo({
             success: function(res) {
@@ -514,12 +522,12 @@ Page({
                     if (that.data.resData.type == 4 || that.data.resData.type == 5) {
                       that.saveMyStarsCount()
                     } else if (that.data.resData.type == 0 || that.data.resData.type == 1 || that.data.resData.type == 2 || that.data.resData.type == 3) {
-                      that.saveMyStarsCount()
+                      // that.saveMyStarsCount()
                       wx.showModal({
                         title: '提示',
                         content: '非门店码，不能集星',
                         success(res) {
-                          if (res.confirm) { } else if (res.cancel) { }
+                          if (res.confirm) {} else if (res.cancel) {}
                         }
                       })
                     } else {
@@ -527,23 +535,30 @@ Page({
                         title: '提示',
                         content: '非本次活动码，不能集星',
                         success(res) {
-                          if (res.confirm) { } else if (res.cancel) { }
+                          if (res.confirm) {} else if (res.cancel) {}
                         }
                       })
-                    } 
+                    }
                   }
                 }
               })
             }
           })
-
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '非本次活动码，不能集星',
+            success(res) {
+              if (res.confirm) {} else if (res.cancel) {}
+            }
+          })
         }
       }
     })
   },
   showYhj() {
     console.log("展示优惠卷");
-   
+
   },
   toPercent(point) {
     if (point == 0) {
@@ -579,11 +594,90 @@ Page({
             that.playXX()
             that.setData({
               myXNum: that.data.myXNum,
-              toPercent: toPercent,
               showStartDiaLog: that.data.showStartDiaLog,
               lingQuChengong: false
             });
+
+            setTimeout(function() {
+              that.setData({
+                toPercent: toPercent
+              });
+            }, 1500);
+
           }
+
+          if (that.data.myXNum == 1) {
+            // app.smwt.track('event', 'button', '有机星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 1,
+              customActionLabel1: '有机星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 2) {
+            // app.smwt.track('event', 'button', '成长星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 2,
+              customActionLabel1: '有机星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 3) {
+            // app.smwt.track('event', 'button', '科技星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 2,
+              customActionLabel1: '科技星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 4) {
+            // app.smwt.track('event', 'button', '植选星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 4,
+              customActionLabel1: '植选星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 5) {
+            // app.smwt.track('event', 'button', '活力星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 5,
+              customActionLabel1: '活力星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 6) {
+            // app.smwt.track('event', 'button', '能量星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 6,
+              customActionLabel1: '能量星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          } else if (that.data.myXNum == 7) {
+            // app.smwt.track('event', 'button', '伊利星', '点亮星星数', '')
+            app.smwt.track('event', {
+              customActionId: 7,
+              customActionLabel1: '伊利星',
+              customActionLabel2: '点亮星星数',
+              customActionLabel3: '',
+              customActionLabel4: '',
+              customActionValue1: 1
+            })
+          }
+
         }
       }
     })
@@ -595,10 +689,10 @@ Page({
       type: 'wgs84',
       success(res) {
         console.log("getLocation", res);
-        // that.data.lat = res.latitude;
-        // that.data.lng = res.longitude
-        that.data.lat = 40.1131
-        that.data.lng = 116.3775
+        that.data.lat = res.latitude;
+        that.data.lng = res.longitude
+        // that.data.lat = 40.1131
+        // that.data.lng = 116.3775
         console.log(that.data.lng)
 
         wx.request({
@@ -673,11 +767,11 @@ Page({
             showHongBao: false
           });
 
-          setTimeout(function(){
+          setTimeout(function() {
             that.setData({
               toPercent: toPercent
             });
-          },1500);
+          }, 1500);
           // wx.showModal({
           //   title: '提示',
           //   content: '已领取',
@@ -691,7 +785,7 @@ Page({
   },
   getHongBaoUrl() {
     let that = this;
-    app.smwt.track('event', 'button', '领取现金红包', '', '')
+    app.smwt.track('event', 'button', '领取现金红包', '首颗星及现金红包页面', '')
     wx.request({
       method: "post",
       dataType: "json",
@@ -709,11 +803,19 @@ Page({
         wx.navigateTo({
           url: '../h5/h5',
         })
+        app.globalData.inApp = false
       }
     })
   },
-  openShop() {
-    app.smwt.track('event', 'button', '查看适用门店', '', '')
+  openShop(e) {
+    let type = e.currentTarget.dataset.type
+    if (type == 0) {
+      app.smwt.track('event', 'button', '查看适用门店', '您可到永辉生活参与集星页面（背景抢先领券）', '')
+    } else if (type == 1) {
+      app.smwt.track('event', 'button', '查看适用门店', '你已领取过奖励（背景抢先领券）', '')
+    } else {
+      app.smwt.track('event', 'button', '查看适用门店', '你已领取过奖励（背景抢先领券）', '')
+    }
     this.setData({
       lingQuChengong: false,
       showinfo: false,
@@ -726,10 +828,10 @@ Page({
       type: 'wgs84',
       success(res) {
         console.log("getLocation", res);
-        // that.data.lat = res.latitude
-        // that.data.lng = res.longitude
-        that.data.lat = 40.1131
-        that.data.lng = 116.3775
+        that.data.lat = res.latitude
+        that.data.lng = res.longitude
+        // that.data.lat = 40.1131
+        // that.data.lng = 116.3775
         that.getMenDianBy3();
       },
       fail() {
@@ -821,8 +923,41 @@ Page({
       }
     })
   },
+  playTestHezi1() {
+    let that = this;
+    // 首页标题
+    if (that.data.hezi1_time == null) {
+      that.data.hezi1_time = setInterval(function() {
+        that.data.hezi1 = that.data.hezi1 % 32
+        that.data.hezi1++
+          that.setData({
+            hezi1: that.data.hezi1
+          })
+
+        if (that.data.hezi1 == 31) {
+          that.stopTestHezi1()
+        }
+      }, 50)
+    }
+  },
+  stopTestHezi1() {
+    let that = this;
+    if (that.data.hezi1_time != null) {
+      clearInterval(that.data.hezi1_time);
+      that.data.hezi1 = 1
+      that.data.hezi1_time = null
+      console.log("第一次播放完")
+      that.setData({
+        hezi1: that.data.hezi1
+      })
+    }
+  },
+
   playHezi1() {
     let that = this;
+    that.setData({
+      hideHeizhi: true
+    })
     // 首页标题
     if (that.data.hezi1_time == null) {
       that.data.hezi1_time = setInterval(function() {
@@ -839,7 +974,7 @@ Page({
       }, 100)
     }
   },
-  stopHezi1(){
+  stopHezi1() {
     let that = this;
     if (that.data.hezi1_time != null) {
       clearInterval(that.data.hezi1_time);
@@ -852,11 +987,11 @@ Page({
     that.data.hezi1 = 26
     // 首页标题
     if (that.data.hezi2_time == null) {
-      that.data.hezi1_time = setInterval(function () {
+      that.data.hezi1_time = setInterval(function() {
         that.data.hezi1++
-        that.setData({
-          hezi1: that.data.hezi1
-        })
+          that.setData({
+            hezi1: that.data.hezi1
+          })
         if (that.data.hezi1 == 31) {
           that.data.hezi1 = 26
         }
@@ -901,12 +1036,13 @@ Page({
 
   },
   goGift() {
-    app.smwt.track('event', 'button', '查看我的好礼', '', '')
+    app.smwt.track('event', 'button', '查看我的好礼', '领取成功页面（背景抢先领券）', '')
     wx.navigateTo({
       url: '../gift/gift',
     })
+    app.globalData.inApp = false
   },
-  getPhoneNumber(e) {
+  getPhoneNumber() {
     let that = this;
     app.smwt.track('event', 'button', '立即领取', '领取券页面（背景立即参与）', '')
     wx.request({
@@ -915,7 +1051,7 @@ Page({
       url: Config.restUrl + 'updatePhone.json',
       data: {
         token: wx.getStorageSync('token'),
-        phone: "15775108718"
+        phone: that.data.usermobile
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -991,8 +1127,9 @@ Page({
           wx.navigateTo({
             url: '../h5/h5',
           })
+          app.globalData.inApp = false
         }
-       
+
       }
     })
   },
@@ -1003,9 +1140,14 @@ Page({
     })
   },
   login() {
+    let that = this;
     this.selectComponent('#comp-auth').openHandle({
       success(res) {
-        let { openid, unionid, userInfo } = res;
+        let {
+          openid,
+          unionid,
+          userInfo
+        } = res;
         console.log(res);
         // res的值的结果
         // res = {
@@ -1013,6 +1155,14 @@ Page({
         //   unionid: "oPIsQ0-8I8SSmJe8kN58U835PJVY", 
         //   userInfo: '{"nickName":"小猪包","gender":1,"language":"zh_CN","c…wyyq8qWP6rRhrdNsX0yZBKyHxwVnYsSSRupxZEdsYZg/132"}',
         // };
+        that.data.userRes = res;
+        that.checkSession();
+
+        app.smwt.setUser(res.userInfo)
+        //在后续的请求中传⼊⽤户openid，将"openID"替换为⽤户实际的openid
+        app.smwt.setOpenId(res.openid)
+        //在后续的请求中传⼊⽤户unionid，将"unionID"替换为⽤户实际的unionid
+        app.smwt.setUnionId(res.unionid)
       },
       fail() {
         // 授权失败回调函数
@@ -1020,26 +1170,32 @@ Page({
     })
   },
   register() {
+    let that = this;
     wx.setStorageSync('ant_register_channel', '88');
     // ant_register_channel为注册渠道值，number类型
     this.selectComponent('#comp-register').openHandle({
       success(res) {
         // 入会成功回调函数
-        let { mobile } = res;
+        let {
+          mobile
+        } = res;
         console.log(res);
+        that.data.usermobile = res.mobile
+        that.getPhoneNumber()
         // res的值的结果
         // res = { mobile: "13125021467" };
-        app.smwt.track('event', 'button', '授权手机号允许', '', '')
+        app.smwt.track('event', 'button', '允许', '授权手机号', '')
       },
       fail() {
         // 入会失败回调函数
-        app.smwt.track('event', 'button', '授权手机号取消', '', '')
+        app.smwt.track('event', 'button', '取消', '授权手机号', '')
       }
     })
   },
   checkSession() {
     let that = this;
-    app.smwt.track('event', 'button', '抢先领券', '', '')
+
+    app.smwt.track('event', 'button', '抢先领券', '抢先领券页面', '')
     wx.request({
       method: "POST",
       dataType: "json",
@@ -1084,7 +1240,7 @@ Page({
             // 已抽奖
             wx.showModal({
               title: '提示',
-              content: '已抽奖过',
+              content: '您已集齐七星并开奖，快前往我的礼品，查看所有奖励吧！',
               success(res) {
                 that.goGift()
               }
@@ -1102,20 +1258,22 @@ Page({
       dataType: "json",
       url: Config.restUrl + 'login.json',
       data: {
-        jsonBody: JSON.stringify({
-          userInfo: {
-            avatarUrl:   "https://wx.qlogo.cn/mmopen/vi_32/Q19DlrwESf7L5ibPuflKlyDDXpTLFcYDOwT2Z0Z1bCUewyyq8qWP6rRhrdNsX0yZBKyHxwVnYsSSRupxZEdsYZg/132",
-            city: "Wuhan",
-            country: "China",
-            gender: 1,
-            language: "zh_CN",
-            nickName: "小猪包",
-            province: "Hubei"
-          },
-          unionid: "oPIsQ0-8I8SSmJe8kN58U835PJVY",
-          openid: "oBPDr4hliKqjeuZq8JJZcp07aco8_c4"
-          // openid: "oBPDr4hliKqjeuZq8JJZcp07aco8_c4" + Math.random() * 50
-        })
+        // jsonBody: JSON.stringify({
+        //   userInfo: {
+        //     avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q19DlrwESf7L5ibPuflKlyDDXpTLFcYDOwT2Z0Z1bCUewyyq8qWP6rRhrdNsX0yZBKyHxwVnYsSSRupxZEdsYZg/132",
+        //     city: "Wuhan",
+        //     country: "China",
+        //     gender: 1,
+        //     language: "zh_CN",
+        //     nickName: "小猪包",
+        //     province: "Hubei"
+        //   },
+        //   unionid: "oPIsQ0-8I8SSmJe8kN58U835PJVY",
+        //   // openid: "oBPDr4hliKqjeuZq8JJZcp07aco8_c4"
+        //   openid: "oBPDr4hliKqjeuZq8JJZcp07aco8_c4" + Math.random() * 50
+        // })
+
+        jsonBody: JSON.stringify(that.data.userRes)
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -1123,8 +1281,6 @@ Page({
       success(res) {
         console.log(res);
         wx.setStorageSync("token", res.data.data);
-
-
         that.getLocation()
       }
     })
@@ -1159,25 +1315,28 @@ Page({
       modalName: null
     })
   },
-  colseshowinfo(){
+  colseshowinfo() {
     this.setData({
-      showinfo:false
+      showinfo: false
     })
   },
 
   colselingQuChengong() {
+    this.stopYhj()
     this.setData({
       lingQuChengong: false
     })
   },
 
   colseshowLingQu() {
+    this.stopYhj()
     this.setData({
       showLingQu: false
     })
   },
-  colseshowHongBao(){
-    app.smwt.track('event', 'button', '关闭红包', '', '')
+  colseshowHongBao() {
+    app.smwt.track('event', 'button', '关闭', '红包页面', '')
+
     this.setData({
       showHongBao: false
     })
@@ -1215,5 +1374,34 @@ Page({
     })
     //设定后设置this.smwtTitle进⾏⻚⾯标题的监测配置
     this.smwtTitle = '来自星星的“礼”'
+    // 音乐
+
+    app.globalData.back = wx.getBackgroundAudioManager();
+    app.globalData.back.src = "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/bg.mp3";
+    app.globalData.back.title = "背景音乐";
+    app.globalData.back.onPlay(() => {
+      console.log("音乐播放开始");
+    })
+    app.globalData.back.onEnded(() => {
+      console.log("音乐播放结束");
+      app.globalData.back = wx.getBackgroundAudioManager();
+      app.globalData.back.src = "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/bg.mp3";
+      app.globalData.back.title = "背景音乐";
+      app.globalData.back.play()
+    })
+    app.globalData.inApp = true
+  },
+  onHide() {
+    //动态设定⼩程序⻚⾯标题
+    wx.setNavigationBarTitle({
+      title: '来自星星的“礼”'
+    })
+    //设定后设置this.smwtTitle进⾏⻚⾯标题的监测配置
+    this.smwtTitle = '来自星星的“礼”'
+    if (app.globalData.inApp) {
+      console.log("暂停")
+      app.globalData.inApp = false
+      app.globalData.back.pause()
+    }
   }
 })

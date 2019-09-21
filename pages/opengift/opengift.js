@@ -5,7 +5,7 @@ const app = getApp();
 Page({
 
   data: {
-    imageUrl: "https://www.jwnice.com/h5/saoxing/",
+    imageUrl: "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/",
     hezi2: 1,
     hezi2_time: null,
     hezi3: 1,
@@ -21,31 +21,37 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    wx.setNavigationBarTitle({
+      title: '来自星星的“礼”'
+    })
     that.setData({
       imageUrl: Config.imageUrl
     });
     console.log("mytype",options);
-    // 1 优惠卷 2 购物卡
-    that.data.mytype = options.mytype;
-    that.playhezi2();
-    if (that.data.mytype == 4) {
+    setTimeout(function(){
+      // 1 优惠卷 2 购物卡
+      that.data.mytype = options.mytype;
       that.playhezi2();
-    } else if (that.data.mytype == 1 || that.data.mytype == 2 || that.data.mytype == 3) {
-      that.playhezi3();
-      that.data.gwkCode = options.gwkCode;
-      that.data.gwkPwd = options.gwkPwd;
-      that.data.gwkUrl = options.gwkUrl;
-    }
-
-    that.setData({
-      mytype: that.data.mytype
-    })
+      if (that.data.mytype == 4) {
+        that.playhezi2();
+      } else if (that.data.mytype == 1 || that.data.mytype == 2 || that.data.mytype == 3) {
+        that.playhezi3();
+        that.data.gwkCode = options.gwkCode;
+        that.data.gwkPwd = options.gwkPwd;
+        that.data.gwkUrl = options.gwkUrl;
+      }
+      that.setData({
+        mytype: that.data.mytype
+      })
+    },1000);
   },
   getHyj(){
     let that = this;
     if (that.data.mytype == 4) {
       this.getCouponUrl();
+      app.smwt.track('event', 'button', '立即领取', '随机中优惠券页面', '')
     } else if (that.data.mytype == 1 || that.data.mytype == 2 || that.data.mytype == 3) {
+      app.smwt.track('event', 'button', '立即使用', '获得购物卡页面', '')
       wx.redirectTo({
         url: '../index/index?from=2&gwktype=' + that.data.mytype + '&gwkCode=' + that.data.gwkCode + '&gwkPwd=' + that.data.gwkPwd + '&gwkUrl=' + that.data.gwkUrl,
       })

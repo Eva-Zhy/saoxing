@@ -1,6 +1,9 @@
-// pages/rules/rules.js
+import {
+  Config
+} from '../../utils/config.js';
+const app = getApp();
 Page({
-
+  smwtTitle: '活动规则',
   /**
    * 页面的初始数据
    */
@@ -26,7 +29,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    //动态设定⼩程序⻚⾯标题
+    wx.setNavigationBarTitle({
+      title: '活动规则'
+    })
+    //设定后设置this.smwtTitle进⾏⻚⾯标题的监测配置
+    this.smwtTitle = '活动规则'
   },
 
   /**

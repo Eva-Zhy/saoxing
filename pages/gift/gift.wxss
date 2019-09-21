@@ -1,12 +1,28 @@
-page {
-  background-color: #f7f8fc;
+.bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/img/hlbg.jpg");
+  background-size: 100% 100%;
+  z-index: 1;
 }
+
+.title{
+  font-size:50rpx;
+  font-weight: 600;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 5%; 
+  color: #fff;
+}
+
 
 .gift-scroll {
   width: 100%;
-  height: 80%;
+  height: 60%;
   position: absolute;
-  top:0;
+  top:15%;
   left: 0;
 }
 
@@ -25,7 +41,7 @@ page {
   margin-left: 2.5%;
   margin-top: 40rpx;
   background-color: #fff;
-  box-shadow: 2px 3px 5px #dadada;
+  /* box-shadow: 2px 3px 5px #dadada; */
   border-radius: 20rpx;
   overflow: hidden;
 }
@@ -46,7 +62,7 @@ page {
 .text1 {
   width: 100%;
   float: left;
-  margin-top: 52rpx;
+  margin-top: 39rpx;
   font-weight: 600;
   font-size: 32rpx;
 }
@@ -55,16 +71,16 @@ page {
   width: 100%;
   float: left;
   margin-top: 8rpx;
-  font-size: 27rpx;
+  font-size: 25rpx;
   color: #ababab;
 }
 
 .gift-num {
-  width: 140rpx;
+  width: 170rpx;
   height: auto;
   float: left;
-  margin-left: 2rpx;
-  margin-top: 47rpx;
+  margin-left: 0rpx;
+  margin-top: 56rpx;
   text-align: right;
 }
 

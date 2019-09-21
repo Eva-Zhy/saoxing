@@ -13,6 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
     this.data.h5url = app.globalData.h5url;
     console.log(this.data.h5url);
     this.setData({

@@ -1,13 +1,17 @@
+ <image wx:for="{{16}}" wx:for-index="idx" wx:key="idx" style="display:block;opacity: 0;" class="loadingimg" src='{{imageUrl+"hezi2/"+idx+".png"}}'></image>
+<image  wx:for="{{16}}" wx:for-index="idx" wx:key="idx" style="display:block;opacity: 0;" class="loadingimg" src='{{imageUrl+"hezi3/"+idx+".png"}}'></image>
+
+
 <view class="bg">
-  <image class="gift_t3" src="../../images/t3.png"></image>
+  <image class="gift_t3" src="../../images/t4.png"></image>
   <view wx:if="{{mytype==4}}" class="yhjt1">5元</view>
   <view wx:if="{{mytype==4}}" class="yhjt2">伊利产品-永辉购物优惠卷</view>
-   <view wx:if="{{mytype==3}}" class="yhjt1">20元</view>
-  <view wx:if="{{mytype==3}}" class="yhjt2">伊利产品-永辉购物卡</view>
-  <view wx:if="{{mytype==2}}" class="yhjt1">100元</view>
-  <view wx:if="{{mytype==2}}" class="yhjt2">伊利产品-永辉购物卡</view>
-  <view wx:if="{{mytype==1}}" class="yhjt1">500元</view>
-  <view wx:if="{{mytype==1}}" class="yhjt2">伊利产品-永辉购物卡</view>
+   <view wx:if="{{mytype==3}}" class="yhjt1">￥20元</view>
+  <view wx:if="{{mytype==3}}" class="yhjt2">永辉购物卡</view>
+  <view wx:if="{{mytype==2}}" class="yhjt1">￥100元</view>
+  <view wx:if="{{mytype==2}}" class="yhjt2">永辉购物卡</view>
+  <view wx:if="{{mytype==1}}" class="yhjt1">￥500元</view>
+  <view wx:if="{{mytype==1}}" class="yhjt2">永辉购物卡</view>
   <image wx:if="{{mytype==4}}" wx:for="{{16}}" wx:for-index="idx" wx:key="idx" style="{{hezi2===idx+1?'display:block':'display:none'}}" class="hezi2" src='{{imageUrl+"hezi2/"+idx+".png"}}'></image>
   <image wx:if="{{mytype==1||mytype==2||mytype==3}}" wx:for="{{16}}" wx:for-index="idx" wx:key="idx" style="{{hezi3===idx+1?'display:block':'display:none'}}" class="hezi2" src='{{imageUrl+"hezi3/"+idx+".png"}}'></image>
   <image bindtap="getHyj" class="btn1" src="../../images/b4.png"></image>

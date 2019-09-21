@@ -8,7 +8,7 @@ Config.isFindWork = 1;
 Config.isFindTalent = 2;  
 
 Config.restUrl = 'https://yilistar.angwei.net/wxApi/xcx/';
-Config.imageUrl = 'https://www.jwnice.com/h5/saoxing/';
+Config.imageUrl = 'https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/';
 Config.version = 1.4;
 Config.onPay = false;  //是否启用支付
 Config.xxs = [

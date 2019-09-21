@@ -1,13 +1,17 @@
-// pages/start/start.js
-Page({
+import {
+  Config
+} from '../../utils/config.js';
+const app = getApp();
 
+Page({
+  smwtTitle: '我的星星',
   /**
    * 页面的初始数据
    */
   data: {
     xxNum:0,
     xx_i:1,
-    imageUrl: "https://www.jwnice.com/h5/saoxing/",
+    imageUrl: "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/",
     xx_time:null
   },
 
@@ -61,7 +65,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.setNavigationBarTitle({
+      title: '我的星星'
+    })
+    //设定后设置this.smwtTitle进⾏⻚⾯标题的监测配置
+    this.smwtTitle = '我的星星'
   },
 
   /**

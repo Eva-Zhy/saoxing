@@ -1,5 +1,5 @@
 module.exports = {
-  "BASE": "https://www.jwnice.com/h5/saoxing/", //资源路径
+  "BASE": "https://lingke-static-cdn-https.angwei.net/event/yili/saoxing/", //资源路径
   "imageList": [
     "yhj/0.png",
     "yhj/1.png",

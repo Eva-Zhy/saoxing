@@ -100,17 +100,25 @@ Page({
     })
   },
   indexscan(){
-    app.smwt.track('event', 'button', '开始集星', '我的好礼页面', '')
-    if (app.globalData.inShop == true) {
-      wx.redirectTo({
-        url: '../index/index?from=3',
-      })
-    }else {
-      wx.redirectTo({
-        url: '../index/index?from=4',
-      })
-    }
-   
+    app.smwt.track('event', 'button', '查看附近门店', '我的好礼页面', '')
+    // if (app.globalData.inShop == true) {
+    //   wx.redirectTo({
+    //     url: '../index/index?from=3',
+    //   })
+    // }else {
+    //   wx.redirectTo({
+    //     url: '../index/index?from=4',
+    //   })
+    // }
+    wx.redirectTo({
+      url: '../index/index?from=4',
+    })
+  },
+  openLink(e){
+    app.globalData.h5url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: '../h5/h5',
+    })
   },
   getGifts() {
     let that = this;
